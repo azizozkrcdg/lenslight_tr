@@ -1,6 +1,0 @@
-                        <div style="margin-top: 30px ;">
-                           <ul style="display: flex; justify-content: space-between;">
-                              <li><a style="min-width: 266px;" class="read_more" href="#">Update</a></li>
-                              <li><a style="min-width: 266px;" class="read_more" href="#">Delete</a></li>
-                           </ul>
-                        </div>
