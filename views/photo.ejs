@@ -3,7 +3,7 @@
    <body class="main-layout inner_page">
       <!-- loader  -->
       <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
+         <div class="loader"><img src="/images/loading.gif" alt="#"/></div>
       </div>
       <!-- end loader -->
      
@@ -16,32 +16,32 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage text_align_center">
-                     <span>03</span>
-                     <h2>Our gallery</h2>
+                     <h3 style="margin-bottom: 15px;"><%= photo.name %></h3>
+                     <p><%= photo.description %></p>
                   </div>
                </div>
             </div>
             <div class="tz-gallery">
                      <div class="row">
 
-                        <% for (photo of photos) { %>
+                        
                         <div class="col-lg-4 col-md-6 ma_bottom30">
                            <div class="lightbox">
-                              <img src="images/g1.jpg" alt="Bridge">
+                              <img src="/images/g1.jpg" alt="Bridge">
                               <div class="view_main">
                                 <div class="pose">
-                                <a class="read_more" href="/photos/<%= photo._id %>"><img src="images/ga.png" alt="#"/></a>
+                                <a class="read_more" href="images/g1.jpg"><img src="images/ga.png" alt="#"/></a>
                                 <h3 style="padding-top: 10px; padding-bottom: 10px;">
                                  <%= photo.name %>
                                 </h3>
                                 <p style="padding-top: 10px;">
-                                 <%= photo.description.substring(0, 70) + "..." %>
+                                 <%= photo.description %>
                                 </p>
                               </div>
                               </div>
                            </div>
                         </div>
-                     <% } %>
+                     
                         
                   </div>
                   <div class="col-md-12">

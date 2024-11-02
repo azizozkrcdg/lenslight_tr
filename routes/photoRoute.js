@@ -9,4 +9,6 @@ router
 .get(photoController.getAllPhotos);
 // router.route("/").get(photoController.getAllPhotos);
 
+router.route("/:id").get(photoController.getAPhoto);
+
 export default router;
