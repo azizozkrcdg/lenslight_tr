@@ -17,7 +17,7 @@
               <div class="col-md-12 ">
                 <div class="titlepage text_align_center">
                
-                  <h2>Register</h2>
+                  <h2>Kayıt Ol</h2>
                 </div>
               </div>
               <div class="col-md-8 offset-md-2">
@@ -29,16 +29,28 @@
                     </div>
 
                     <div class="col-md-12">
+                      <div style="display: none;" class="alert alert-danger" id="username"></div>
+                    </div>
+
+                    <div class="col-md-12">
                      <input class="form_control" placeholder="email" type="email" name="email">                          
                    </div>
 
                    <div class="col-md-12">
+                    <div style="display: none;" class="alert alert-danger" id="email"></div>
+                  </div>
+
+                   <div class="col-md-12">
                      <input class="form_control" placeholder="password" type="password" name="password">                          
                    </div>
+
+                   <div class="col-md-12">
+                    <div style="display: none;" class="alert alert-danger" id="password"></div>
+                  </div>
                     
                     <div class="col-md-12">
                       <div class="group_form">
-                        <button class="send_btn">Register</button>
+                        <button class="send_btn">Kayıt Ol</button>
                         
                       </div>
                     </div>
@@ -48,6 +60,64 @@
             </div>
           </div>
         </div>
-      <!-- end contact -->
-      <!-- end footer -->
+      
+        <script>
+          const form = document.querySelector("form");
+          const usernameError = document.querySelector("#username");
+          const emailError = document.querySelector("#email");
+          const passError = document.querySelector("#password");
+
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            usernameError.textContent = "";
+            emailError.textContent = "";
+            passError.textContent = "";
+            usernameError.style.display = "none";
+            emailError.style.display = "none";
+            passError.style.display = "none";
+
+            const username = form.username.value;
+            const email = form.email.value;
+            const password = form.password.value;
+
+            try {
+              const res = await fetch("users/register", {
+                method: "POST",
+                body: JSON.stringify({username, email, password}),
+                headers: {"Content-Type":"application/json"}
+              })
+
+              const data = await res.json();
+
+              if(data) {
+                console.log("data kısmıı")
+                if(data.username) {
+                  usernameError.textContent = data.username;
+                  usernameError.style.display = "block";
+                }
+
+                if(data.email) {
+                  emailError.textContent = data.email;
+                  emailError.style.display = "block";
+                }
+
+                if(data.password) {
+                  passError.textContent = data.password;
+                  passError.style.display = "block";
+                }
+              }
+
+              if(data.user) {
+                location.assign("/login");
+              }
+            
+            }catch(err) {
+              console.log("Error : ", err);
+            }
+
+          });
+
+        </script>
+        
       <%- include("partials/_footer.ejs") %>
